@@ -27,7 +27,7 @@ export default function MessageBox(props) {
   
   const sendData = async ()=>{
     try {
-        const data = await fetch('http://localhost:3000/api',{
+        const data = await fetch('https://whatsapp-vishnu-api.vercel.app/api',{
         method:'POST',
         headers:{
           'Content-Type':'application/json',

@@ -7,7 +7,7 @@ export default function Body(props) {
   const[messages, setMessage]= useState([]);
   const fetchdata=async()=>{
     try{
-      const data = await fetch('http://localhost:3000/api');
+      const data = await fetch('https://whatsapp-vishnu-api.vercel.app/api');
       let res = await data.json();
       setMessage(res);
     }catch(err){

@@ -4,7 +4,7 @@ import {Person,DeleteOutline} from '@mui/icons-material';
 export default function Nav(props) {
   const clearChat = async()=>{
     try {
-        const data = await fetch('http://localhost:3000/api',{
+        const data = await fetch('https://whatsapp-vishnu-api.vercel.app/api',{
         method:'DELETE',
       });
     } catch (error) {
