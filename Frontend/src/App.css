@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.app{
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mainCtn{
+    height: 100%;
+    width: 40%;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: black;
+}
+
+@media (max-width: 750px) {
+  .mainCtn{
+    width: 100%;
+    border-radius: 0px;
+  }
+}
