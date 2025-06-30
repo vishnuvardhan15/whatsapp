@@ -1,9 +1,12 @@
 .mainCtn{
-    height: 100px;
+    height: 85px;
     width: 100%;
     align-items: center;
     display: flex;
     justify-content: space-around;
+    position: absolute;
+    bottom: 0;
+    backdrop-filter: blur(5px);
 }
 .inputWrapper{
     height: fit-content;
@@ -34,9 +37,6 @@
     font-size: 33px !important;
 }
 @media (max-width: 750px) {
-  .button{
-    
-  }
   .inputWrapper{
     padding: 0 5px;
   }

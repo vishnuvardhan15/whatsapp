@@ -10,15 +10,13 @@
     align-items: center;
     justify-content: center;
 }
-/* .mainCtn::-webkit-scrollbar{
-  display: none;
-} */
 .mainCtn{
     height: 100%;
     width: 40%;
     border-radius: 20px;
     overflow: hidden;
     background-color: black;
+    position: relative;
 }
 
 @media (max-width: 750px) {

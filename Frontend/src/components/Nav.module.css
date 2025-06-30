@@ -7,6 +7,9 @@
     padding-left: 8px;
     align-items: center;
     overflow: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 1;
 }
 .profile{
     padding: 5px;
