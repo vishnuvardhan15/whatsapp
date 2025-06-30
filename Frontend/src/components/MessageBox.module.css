@@ -12,9 +12,6 @@
     background-color: #2A2A2C;
     padding: 0px 10px;
 }
-.emoji{
-    color: #CCD5D3;
-}
 .input{
     height: auto;
     flex: 1;
@@ -27,23 +24,23 @@
     color: aliceblue;
 }
 .button{
-    height: 70px;
-    width: 70px;
+    padding: 10px 10px 10px 14px;
     background-color: #00A680;
     border-radius: 50%;
     border: none;
     outline: none;
-    padding-left: 8px;
 }
 .sendIcon{
     font-size: 33px !important;
 }
 @media (max-width: 750px) {
   .button{
-    height: 58px;
-    width: 58px;
+    
   }
   .inputWrapper{
     padding: 0 5px;
+  }
+  .input{
+    font-size: 1.1em;
   }
 }

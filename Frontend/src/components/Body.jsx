@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import css from './Body.module.css'
 import MessageBox from './MessageBox';
 import { useEffect } from 'react';
+import {io} from 'socket.io-client'
 
 export default function Body(props) {
+  const socket  = useRef(null);
   const[messages, setMessage]= useState([]);
   const fetchdata=async()=>{
     try{
@@ -15,7 +17,14 @@ export default function Body(props) {
     }
   }
   useEffect(()=>{
+    socket.current = io('https://whatsapp-vishnu-api.vercel.app')
+    socket.current.on("connect",()=>{
+      console.log('connected web socket')
+    })
     fetchdata();
+    socket.current.on('serverMessage',(data)=>{
+      setMessage((prev)=>[...prev, data]);
+    })
   },[])
   return (
     
@@ -24,7 +33,7 @@ export default function Body(props) {
           {
             messages.map((m, index)=>{
               return <div key={index} className={css.chatWrapper} style={(m.owner==props.user)?{alignItems: "flex-end"}:{}}>
-                <div style={(m.owner==props.user)?{backgroundColor: "#0F493F",borderRadius: "20px 0px 20px 20px"}:{}} className={css.chats}>
+                <div style={(m.owner==props.user)?{backgroundColor: "#0F493F",borderRadius: "15px 0px 15px 15px"}:{}} className={css.chats}>
                   <p className={css.chatOwner}>{m.owner}</p>
                   <p className={css.chatText}>{m.text}</p>
                 </div>

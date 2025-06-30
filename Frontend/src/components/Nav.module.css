@@ -9,8 +9,7 @@
     overflow: hidden;
 }
 .profile{
-    height: 65px;
-    width: 65px;
+    padding: 5px;
     background-color: #54726d;
     border-radius: 50%;
     display: flex;
@@ -27,8 +26,7 @@
     flex: 1;
 }
 .more{
-    height: 70px;
-    width: 70px;
+    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,4 +40,12 @@
     font-size: 40px !important;
     color: white;
     opacity: 0.7;
+}
+@media (max-width: 750px) {
+    .personIcon , .deleteOutlineIcon{
+        font-size: 40px !important;
+    }
+    .name{
+        font: 1em sans-serif;
+    }
 }
