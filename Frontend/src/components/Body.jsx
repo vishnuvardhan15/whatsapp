@@ -7,6 +7,7 @@ import {io} from 'socket.io-client'
 export default function Body(props) {
   const socket  = useRef(null);
   const[messages, setMessage]= useState([]);
+  const focusRef = useRef(null);
   const fetchdata=async()=>{
     try{
       const data = await fetch('https://whatsapp-et8q.onrender.com/api');
@@ -26,6 +27,11 @@ export default function Body(props) {
       setMessage((prev)=>[...prev, data]);
     })
   },[])
+  useEffect(()=>{
+      if (focusRef.current) {
+        focusRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+  },[messages])
   return (
     
     <div className={css.main}>
@@ -40,6 +46,7 @@ export default function Body(props) {
               </div>
             })
           } 
+          <div ref={focusRef}></div>
         </div>
         <MessageBox messages={messages} setMessage={setMessage} user={props.user} setUser={props.setUser}/>
     </div>

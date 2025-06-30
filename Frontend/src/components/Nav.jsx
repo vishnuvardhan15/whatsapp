@@ -10,8 +10,6 @@ export default function Nav(props) {
     } catch (error) {
       console.log(error);
     }
-    
-    
   }
   return (
     <div className={css.main}>
