@@ -9,7 +9,7 @@ export default function Body(props) {
   const[messages, setMessage]= useState([]);
   const fetchdata=async()=>{
     try{
-      const data = await fetch('https://whatsapp-vishnu-api.vercel.app/api');
+      const data = await fetch('https://whatsapp-et8q.onrender.com/api');
       let res = await data.json();
       setMessage(res);
     }catch(err){
@@ -17,7 +17,7 @@ export default function Body(props) {
     }
   }
   useEffect(()=>{
-    socket.current = io('https://whatsapp-vishnu-api.vercel.app')
+    socket.current = io('https://whatsapp-et8q.onrender.com')
     socket.current.on("connect",()=>{
       console.log('connected web socket')
     })

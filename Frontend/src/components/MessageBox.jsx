@@ -24,7 +24,7 @@ export default function MessageBox(props) {
   const inputRef = useRef(null);
   useEffect(()=>{
     inputRef.current.focus();
-    socket.current = io('https://whatsapp-vishnu-api.vercel.app')
+    socket.current = io('https://whatsapp-et8q.onrender.com')
     socket.current.on("connect",()=>{
       console.log('connected web socket')
     })
@@ -34,7 +34,7 @@ export default function MessageBox(props) {
     console.log("inside sendData func");
     
     try {
-        const data = await fetch('https://whatsapp-vishnu-api.vercel.app/api',{
+        const data = await fetch('https://whatsapp-et8q.onrender.com/api',{
         method:'POST',
         headers:{
           'Content-Type':'application/json',
