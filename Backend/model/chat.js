@@ -1,14 +1,26 @@
-const mongoose = require("mongoose")
-const {model, Schema} = mongoose;
+const { Schema, model } = require("mongoose");
 
-const chatSchema = new Schema({
-    owner: {
-        type: String,
+const chatSchema = new Schema(
+{
+    myId: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     },
-    text: {
-        type: String,
-    }
-})
 
-const Chat = model('whatsapp-chat', chatSchema);
-module.exports = Chat;
+    contactId: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
+
+    messages: [{
+        type: Schema.Types.ObjectId,
+        ref: "Message"
+    }]
+},
+{
+    timestamps: true
+});
+
+module.exports = model("Chat", chatSchema);

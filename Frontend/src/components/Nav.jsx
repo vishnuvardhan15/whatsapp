@@ -1,12 +1,20 @@
 import React from 'react'
 import css from './Nav.module.css'
 import {Person,DeleteOutline} from '@mui/icons-material';
+import { useSelector, useDispatch } from 'react-redux';
 export default function Nav(props) {
+  const user = useSelector((state) => state.auth.user);
   const clearChat = async()=>{
     try {
-        const data = await fetch('https://whatsapp-et8q.onrender.com/api',{
-        method:'DELETE',
-      });
+        const data = await fetch(
+            'http://localhost:3000/api/messages',
+            {
+                method:'DELETE',
+                headers:{
+                    Authorization:`Bearer ${localStorage.getItem('token')}`
+                }
+            }
+        );
     } catch (error) {
       console.log(error);
     }
@@ -14,7 +22,7 @@ export default function Nav(props) {
   return (
     <div className={css.main}>
         <div className={css.profile}><Person className={css.personIcon} /></div>
-        <div className={css.name}><h2>{props.user}</h2></div>
+        <h1 style={{color: "#fff"}}>{user.name}</h1>
         <div className={css.more} onClick={clearChat}><DeleteOutline className={css.deleteOutlineIcon}/></div>
     </div>
   )

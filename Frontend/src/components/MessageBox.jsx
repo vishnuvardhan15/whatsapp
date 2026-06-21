@@ -2,10 +2,13 @@ import React, { useEffect, useState, useRef } from 'react'
 import css from './MessageBox.module.css';
 import {Send} from '@mui/icons-material';
 import {connect, io} from 'socket.io-client';
+import { useSelector } from 'react-redux';
 
 export default function MessageBox(props) {
   const socket = useRef(null);
   const[value, setValue] = useState('');
+  const token = useSelector(state => state.auth.token);
+
   const[i, setI] = useState(0);
   const arr =[
     "Hey! Just checking in 👋",
@@ -24,27 +27,42 @@ export default function MessageBox(props) {
   const inputRef = useRef(null);
   useEffect(()=>{
     inputRef.current.focus();
-    socket.current = io('https://whatsapp-et8q.onrender.com')
+    // socket.current = io('https://whatsapp-et8q.onrender.com')
+    socket.current = io('http://localhost:3000')
     socket.current.on("connect",()=>{
       console.log('connected web socket')
     })
   },[])
   
-  const sendData = async ()=>{
-    console.log("inside sendData func");
-    
-    try {
-        const data = await fetch('https://whatsapp-et8q.onrender.com/api',{
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json',
-        },
-        body: JSON.stringify({owner: props.user, text: value})
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  const sendData = async()=>{
+
+      if(!props.selectedChat) return;
+
+      const response = await fetch(
+          'http://localhost:3000/api/message/send',
+          {
+              method:'POST',
+              headers:{
+                  'Content-Type':'application/json',
+                  Authorization:`Bearer ${token}`
+              },
+              body:JSON.stringify({
+                  chatId: props.selectedChat.chatId,
+                  text:value
+              })
+          }
+      );
+
+      const message = await response.json();
+
+      props.setMessages(prev=>[
+          ...prev,
+          message.message
+      ]);
+
+      setValue('');
   }
+  
   const handleInputChange = (e)=>{
     setValue(e.target.value);
   }
@@ -58,11 +76,12 @@ export default function MessageBox(props) {
     socket.current.emit('clientMessage',{owner: props.user, text: value});
   }
   return (
-    <form className={css.mainCtn}>
-        <div className={css.inputWrapper}>
-          <input type="text" ref={inputRef} value={value} placeholder={placeHolder} className={css.input} onChange={handleInputChange}/>
-        </div>
+
+    <form className={css.mainCtn}>  
+      <div className={css.inputContainer}>
+        <input type="text" className={css.input} ref={inputRef} value={value} placeholder={placeHolder} onChange={handleInputChange}/>
         <button type='submit' className={css.button} onClick={handleBtnClick}><Send className={css.sendIcon}/></button>
+      </div>  
     </form>
   )
 }

@@ -5,14 +5,19 @@ import "./App.css"
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
+import { Navigate } from 'react-router-dom';
+import Alert from './components/Alert';
 
 function App() {
-    const[user, setUser] = useState("bot");
   return (
     <div className='app'>
+      <Alert/>
       <Routes>
-        <Route path='/home' element={<Home user={user}/>}/>
-        <Route path='/' element={<Login user={user} setUser={setUser}/>}/>
+        <Route path="/" element={<Navigate to="/signup" />} />
+        <Route path='/chat' element={<Home/>}/>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/signup' element={<Signup/>}/>
       </Routes>
     </div>
   )

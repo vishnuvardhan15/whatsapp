@@ -1,0 +1,205 @@
+/* .contactCtn{ */
+    /* height: 100%;
+    width: 20%;
+    background-color: rgba(38, 36, 36, 0.5); */
+    /* linear-gradient(
+    360deg,
+    #10352D 1%,
+    #0B1512 50%
+    ); 
+    background:
+    linear-gradient(
+    195deg,
+    #050807 0%,
+    #0B1512 40%,
+    #10352D 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    padding: 10px; */
+    /* flex-wrap: nowrap;  */
+/* } */
+/* .myContacts{
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.227);
+}
+.addContactBtn{
+    width: 90%;
+    font-weight: bold;
+    font-size: 20px;
+    color: #000000;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+/*  */
+ .contactCtn{
+    width: 20%;
+    height: 100vh;
+    background: #050505;
+    padding: 30px 20px;
+    border-right: 1px solid #171717;
+    padding : 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.userName{
+    color: white;
+    margin-bottom: 25px;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.addContactBtn{
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #6d28d9
+    );
+
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.addContactBtn:hover{
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 20px rgba(139,92,246,.5);
+}
+
+.myContacts{
+    margin-top: 40px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.contact{
+    position: relative;
+
+    padding: 18px 20px;
+
+    color: #8b8b8b;
+    font-size: 1.1rem;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: all .35s ease;
+
+    overflow: hidden;
+}
+.contact::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: #114937;
+
+    opacity: 0;
+    transition: .3s;
+}
+.contact:hover{
+    color: #d1fae5;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(17,73,55,.45),
+        rgba(17,73,55,.05)
+    );
+
+    box-shadow:
+        -10px 0 25px rgba(17,73,55,.55),
+        0 0 20px rgba(17,73,55,.25);
+
+    transform: translateX(8px);
+}
+
+.contact:hover::before{
+    opacity: 1;
+}
+.contact:hover::before{
+    opacity: 1;
+}
+.active{
+    color: #ffffff;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(17,73,55,.55),
+        rgba(17,73,55,.08)
+    );
+
+    box-shadow:
+        -10px 0 30px rgba(17,73,55,.7),
+        0 0 30px rgba(17,73,55,.3);
+}
+
+.active::before{
+    opacity: 1;
+}
+.contactCtn{
+    width: 280px;
+    height: 100vh;
+
+    background:
+    linear-gradient(
+        180deg,
+        #050807 0%,
+        #0b1512 100%
+    );
+
+    border-right: 1px solid rgba(17,73,55,.4);
+
+    padding: 25px;
+}
+.addContactBtn{
+    background: #114937;
+    color: white;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 14px 18px;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+}
+
+.addContactBtn:hover{
+    background: #16624b;
+
+    box-shadow:
+        0 0 20px rgba(17,73,55,.6),
+        0 0 40px rgba(17,73,55,.3);
+
+    transform: translateY(-2px);
+}

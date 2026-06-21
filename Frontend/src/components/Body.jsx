@@ -1,54 +1,137 @@
-import React, { useRef, useState } from 'react'
-import css from './Body.module.css'
+import React, { useEffect, useRef, useState } from 'react';
+import css from './Body.module.css';
 import MessageBox from './MessageBox';
-import { useEffect } from 'react';
-import {io} from 'socket.io-client'
+import { useSelector, useDispatch } from 'react-redux';
+import { setMessages, addMessage  } from '../store/messageSlice';
+import { showAlert } from '../store/alertSlice';
+import { setSelectedChat } from '../store/chatSlice';
+import Alert from './Alert';
+import Contact from './Contact';
+import socket from '../utils/socket'
+import { IoPersonCircle } from "react-icons/io5";
 
-export default function Body(props) {
-  const socket  = useRef(null);
-  const[messages, setMessage]= useState([]);
-  const focusRef = useRef(null);
-  const fetchdata=async()=>{
-    try{
-      const data = await fetch('https://whatsapp-et8q.onrender.com/api');
-      let res = await data.json();
-      setMessage(res);
-    }catch(err){
-      console.log(err);
-    }
-  }
-  useEffect(()=>{
-    socket.current = io('https://whatsapp-et8q.onrender.com')
-    socket.current.on("connect",()=>{
-      console.log('connected web socket')
-    })
-    fetchdata();
-    socket.current.on('serverMessage',(data)=>{
-      setMessage((prev)=>[...prev, data]);
-    })
-  },[])
-  useEffect(()=>{
-      if (focusRef.current) {
-        focusRef.current.scrollIntoView({ behavior: "smooth" });
+export default function Body() {
+    const focusRef = useRef(null);
+
+    const messages = useSelector((state) => state.messages.messages);
+    const selectedChat = useSelector((state) => state.chat.selectedChat);
+    const user = useSelector((state) => state.auth.user);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      socket.on(
+          "receive-message",
+          (data) => {
+              if (
+                  selectedChat &&
+                  data.chatId === selectedChat.chatId
+              ) {
+                  dispatch(
+                      addMessage(data)
+                  );
+              }
+          }
+      );
+      return () => {
+          socket.off("receive-message");
+      };
+    }, [selectedChat]);
+
+    //Auto scroll to bottom
+    useEffect(() => {
+        if (focusRef.current) {
+            focusRef.current.scrollIntoView({
+                behavior: 'smooth'
+          });
       }
-  },[messages])
-  return (
-    
-    <div className={css.main}>
-        <div  className={css.chatBox}>
-          {
-            messages.map((m, index)=>{
-              return <div key={index} className={css.chatWrapper} style={(m.owner==props.user)?{alignItems: "flex-end"}:{}}>
-                <div style={(m.owner==props.user)?{backgroundColor: "#0F493F",borderRadius: "15px 0px 15px 15px"}:{}} className={css.chats}>
-                  <p className={css.chatOwner}>{m.owner}</p>
-                  <p className={css.chatText}>{m.text}</p>
+    }, [messages]);
+
+    return (
+        <div className={css.main}>
+            <Contact/>
+            <div className={css.container}>
+                {
+                  !selectedChat
+                  ?
+                  (
+                      <div className={css.innerContainer}>
+
+                          <h1>Select a Chat</h1>
+                          <p>
+                              Choose a contact from the sidebar
+                              to start messaging.
+                          </p>
+
+                      </div>
+                  )
+                  :
+                <div className={css.innerContainer}>
+                    <div className={css.navChatBox}>
+                        <IoPersonCircle className={css.userIcon}/>
+                        <h2 className={css.userName}>
+                            {selectedChat.contactName}
+                        </h2>
+                    </div>
+                    <div className={css.chatBox}>
+                        {
+                            messages.map((m) => (
+                                <div
+                                    key={m._id}
+                                    className={css.chatWrapper}
+                                    style={
+                                        m.senderId === user.id
+                                            ? { alignItems: 'flex-end' }
+                                            : {}
+                                    }
+                                >
+                                    <div
+                                        className={css.chats}
+                                        style={
+                                            m.senderId === user.id
+                                                ? {
+                                                    backgroundColor: '#114937',
+                                                    borderRadius:
+                                                        '15px 0px 15px 15px'
+                                                }
+                                                : {}
+                                        }
+                                    >
+                                        <p className={css.chatOwner}>
+                                            {
+                                                m.senderId === user.id
+                                                    ? 'You'
+                                                    : 'Contact'
+                                            }
+                                        </p>
+                                        <p className={css.chatText}>
+                                            {m.text}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))
+                        }
+
+                        <div ref={focusRef}></div>
+
+                    </div>
+
                 </div>
-              </div>
-            })
-          } 
-          <div ref={focusRef}></div>
+                }
+
+                {
+                  selectedChat &&
+                  (
+                      <MessageBox
+                          messages={messages}
+                          setMessages={setMessages}
+                          selectedChat={selectedChat}
+                      />
+                  )
+                }
+
+            </div>
+
         </div>
-        <MessageBox messages={messages} setMessage={setMessage} user={props.user} setUser={props.setUser}/>
-    </div>
-  )
+    );
 }
