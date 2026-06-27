@@ -147,15 +147,6 @@ button:hover {
     position: relative;
     right: 0;
 }
-/* .chatBox{
-    height: 100%;
-    padding: 30px 10px 10px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    overflow-x: scroll;
-    padding: 85px 5px;
-} */
 .chatBox{
     height: 92%;
     width: 100%;
@@ -208,7 +199,7 @@ button:hover {
     font: 1.3em sans-serif;
     padding: 5px;
 }
-@media (max-width: 750px) {
+@media (max-width: 500px) {
   .chatOwner{
     font: 0.7em sans-serif;
   }
@@ -217,6 +208,10 @@ button:hover {
   }
   .chats{
     padding: 5px;
+  }
+  .container{
+    width: 90%;
+    margin-left: 10%;
   }
 }
 .inputBox{

@@ -7,7 +7,6 @@
     position: absolute;
     bottom: 0;
     backdrop-filter: blur(5px);
-    padding: 0px 0px 0px 150px;
 }
 /* From Uiverse.io by Smit-Prajapati */ 
 .inputContainer {
@@ -74,32 +73,15 @@
     border-radius: 0.8rem;
   }
 }
-/* .input{
-    height: auto;
-    flex: 1;
-    border-radius: 50px;
-    padding: 20px;
-    border: none;
-    outline: none;
-    background-color: #2A2A2C;
-    font-size: 1.4em;
-    color: aliceblue;
-}
-.button{
-    padding: 5px 5px 5px 9px;
-    background-color: #00A680;
-    border-radius: 50%;
-    border: none;
-    outline: none;
-}
-.sendIcon{
-    font-size: 33px !important;
-}
-@media (max-width: 750px) {
+
+@media (max-width: 500px) {
   .inputWrapper{
     padding: 0 5px;
   }
   .input{
     font-size: 1.1em;
   }
-} */
+  .inputContainer{
+    width: 100%;
+  }
+} 

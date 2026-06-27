@@ -1,7 +1,8 @@
 import React from 'react'
 import css from './Nav.module.css'
-import {Person,DeleteOutline} from '@mui/icons-material';
+import {Person} from '@mui/icons-material';
 import { useSelector, useDispatch } from 'react-redux';
+import { MdOutlineLogout } from "react-icons/md";
 import BASE_URL from '../../config';
 export default function Nav(props) {
   const user = useSelector((state) => state.auth.user);
@@ -24,7 +25,7 @@ export default function Nav(props) {
     <div className={css.main}>
         <div className={css.profile}><Person className={css.personIcon} /></div>
         <h1 style={{color: "#fff"}}>{user.name}</h1>
-        <div className={css.more} onClick={clearChat}><DeleteOutline className={css.deleteOutlineIcon}/></div>
+        <div className={css.more} onClick={clearChat}><MdOutlineLogout className={css.logout}/></div>
     </div>
   )
 }

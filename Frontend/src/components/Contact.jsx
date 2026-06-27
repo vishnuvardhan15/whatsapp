@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import { logout } from '../store/authSlice';
 import { setContacts } from '../store/contactSlice';
 import { showAlert } from '../store/alertSlice';
@@ -8,12 +8,15 @@ import { setMessages } from '../store/messageSlice';
 import css from './Contact.module.css'
 import socket from '../utils/socket';
 import BASE_URL from '../../config';
+import { IoPersonAddSharp } from "react-icons/io5";
+import { RiMenuFold4Line } from "react-icons/ri";
 
 function Contact() {
     const dispatch = useDispatch();
     const contacts = useSelector((state) => state.contacts.contacts);
     const user = useSelector((state) => state.auth.user);
     const token = useSelector((state) => state.auth.token);
+    const [showContacts, setShowContacts] = useState(true);
 
     useEffect(() => {
         loadContacts();
@@ -100,16 +103,20 @@ function Contact() {
     };
     
   return (
-    <div className={css.contactCtn}>
-    <h1 className={css.userName}>{user.name}</h1>
-
-    <button
-        onClick={addContact}
-        className={css.addContactBtn}
-    >
-            + Add Contact
+    <div className={`${css.contactCtn} ${
+        showContacts ? css.show : css.hide
+    }`}>
+        <button className={css.menu} onClick={() => setShowContacts(!showContacts)}>
+            <RiMenuFold4Line />
         </button>
-
+        <div className={css.addContact}>
+            <button
+                onClick={addContact}
+                className={css.addContactBtn}
+            >
+                <IoPersonAddSharp />
+            </button>
+        </div>
         <div className={css.myContacts}>
             {
                 contacts.map(contact => (

@@ -8,21 +8,16 @@ linear-gradient(
 #10352D 5%,
 #0B1512 50%
 ); */
-    background:
-    linear-gradient(
-    65deg,
-    #050807 30%,
-    #0B1512 40%,
-    #10352D 90%
-    );
+    background: #0c1e19;
     display: flex;
     gap: 20px;
     padding: 0px 20px 0px 20px;
     align-items: center;
+    justify-content: space-between;
     overflow: hidden;
     position: absolute;
     top: 0;
-    z-index: 1;
+    z-index: 2;
 }
 .profile{
     padding: 5px;
@@ -45,17 +40,19 @@ linear-gradient(
     padding: 5px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    flex: 1;
 }
 .personIcon{
     font-size: 50px !important;
     color: white;
     opacity: 0.7;
 }
-.deleteOutlineIcon{
+.logout{
     font-size: 40px !important;
-    color: #ffffff;
+    color: #ff4545;
     opacity: 0.7;
+    cursor: pointer;
 }
 @media (max-width: 750px) {
     .personIcon , .deleteOutlineIcon{
