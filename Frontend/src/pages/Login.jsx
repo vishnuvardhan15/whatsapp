@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../store/authSlice';
 import { showAlert } from '../store/alertSlice';
 import {useNavigate} from 'react-router-dom'
-import BASE_URL from '../../../config';
+import BASE_URL from '../../config';
 
 export default function login() {
   const [user,setUser] = useState({

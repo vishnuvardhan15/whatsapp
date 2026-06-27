@@ -2,7 +2,7 @@ import React from 'react'
 import css from './Nav.module.css'
 import {Person,DeleteOutline} from '@mui/icons-material';
 import { useSelector, useDispatch } from 'react-redux';
-import BASE_URL from '../../../config';
+import BASE_URL from '../../config';
 export default function Nav(props) {
   const user = useSelector((state) => state.auth.user);
   const clearChat = async()=>{

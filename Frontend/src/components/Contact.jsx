@@ -7,7 +7,7 @@ import { setSelectedChat } from '../store/chatSlice';
 import { setMessages } from '../store/messageSlice';
 import css from './Contact.module.css'
 import socket from '../utils/socket';
-import BASE_URL from '../../../config';
+import BASE_URL from '../../config';
 
 function Contact() {
     const dispatch = useDispatch();

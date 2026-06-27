@@ -3,7 +3,7 @@ import css from './MessageBox.module.css';
 import {Send} from '@mui/icons-material';
 import {connect, io} from 'socket.io-client';
 import { useSelector } from 'react-redux';
-import BASE_URL from '../../../config';
+import BASE_URL from '../../config';
 
 export default function MessageBox(props) {
   const socket = useRef(null);
