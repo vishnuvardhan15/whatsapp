@@ -59,6 +59,7 @@ function Contact() {
             if (!response.ok) {
                 throw new Error(data.message || 'Failed to add contact');
             }
+            dispatch(showAlert({ message: data.message, type: 'success' }));
             await loadContacts();
         } catch (err) {
             dispatch(showAlert({ message: err.message, type: 'error' }));
