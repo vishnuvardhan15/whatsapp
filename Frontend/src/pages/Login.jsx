@@ -55,6 +55,7 @@ export default function login() {
         }))
         navigate('/chat');
       } catch (error) {
+        console.log(error.message)
         dispatch(showAlert({
           message: error.message,
           type: 'error'
