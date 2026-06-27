@@ -3,6 +3,7 @@ import css from './MessageBox.module.css';
 import {Send} from '@mui/icons-material';
 import {connect, io} from 'socket.io-client';
 import { useSelector } from 'react-redux';
+import BASE_URL from '../../../config';
 
 export default function MessageBox(props) {
   const socket = useRef(null);
@@ -27,8 +28,8 @@ export default function MessageBox(props) {
   const inputRef = useRef(null);
   useEffect(()=>{
     inputRef.current.focus();
-    // socket.current = io('https://whatsapp-et8q.onrender.com')
-    socket.current = io('http://localhost:3000')
+    socket.current = io(BASE_URL);
+    // socket.current = io('http://localhost:3000')
     socket.current.on("connect",()=>{
       console.log('connected web socket')
     })
@@ -39,7 +40,7 @@ export default function MessageBox(props) {
       if(!props.selectedChat) return;
 
       const response = await fetch(
-          'http://localhost:3000/api/message/send',
+          `${BASE_URL}/api/message/send`,
           {
               method:'POST',
               headers:{

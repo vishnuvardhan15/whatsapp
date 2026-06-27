@@ -2,12 +2,13 @@ import React from 'react'
 import css from './Nav.module.css'
 import {Person,DeleteOutline} from '@mui/icons-material';
 import { useSelector, useDispatch } from 'react-redux';
+import BASE_URL from '../../../config';
 export default function Nav(props) {
   const user = useSelector((state) => state.auth.user);
   const clearChat = async()=>{
     try {
         const data = await fetch(
-            'http://localhost:3000/api/messages',
+            `${BASE_URL}/api/messages`,
             {
                 method:'DELETE',
                 headers:{

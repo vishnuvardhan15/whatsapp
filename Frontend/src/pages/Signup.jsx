@@ -3,6 +3,7 @@ import css from './Auth.module.css'
 import {useNavigate} from 'react-router-dom'
 import {showAlert} from '../store/alertSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import BASE_URL from '../../../config'
 
 export default function Signup() {
   const [user,setUser] = useState({
@@ -29,7 +30,7 @@ export default function Signup() {
 
   const registerUser = async (userData) => {
     try {
-      const response = await fetch('http://localhost:3000/api/auth/signup', {
+      const response = await fetch(`${BASE_URL}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

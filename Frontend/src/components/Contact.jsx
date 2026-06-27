@@ -7,6 +7,7 @@ import { setSelectedChat } from '../store/chatSlice';
 import { setMessages } from '../store/messageSlice';
 import css from './Contact.module.css'
 import socket from '../utils/socket';
+import BASE_URL from '../../../config';
 
 function Contact() {
     const dispatch = useDispatch();
@@ -20,8 +21,7 @@ function Contact() {
 
     const loadContacts = async () => {
         try {
-            const response = await fetch(
-                'http://localhost:3000/api/contacts',
+            const response = await fetch(`${BASE_URL}/api/contacts`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -43,7 +43,7 @@ function Contact() {
         const email = prompt('Enter contact email');
         if (!email) return;
         try {
-            const response = await fetch('http://localhost:3000/api/contact/add',
+            const response = await fetch(`${BASE_URL}/api/contact/add`,
                 {
                     method: 'POST',
                     headers: {
@@ -68,7 +68,7 @@ function Contact() {
     const openChat = async (contactId, contactName) => {
         try {
             const response = await fetch(
-                `http://localhost:3000/api/chat/${contactId}`,
+                `${BASE_URL}/api/chat/${contactId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

@@ -1,7 +1,8 @@
 import { io } from "socket.io-client";
+import BASE_URL from "../../../config";
 
 const socket = io(
-    "http://localhost:3000",
+    BASE_URL,
     {
         autoConnect: false
     }
